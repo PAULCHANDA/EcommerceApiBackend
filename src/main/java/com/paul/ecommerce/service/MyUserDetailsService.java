@@ -21,6 +21,14 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return new User("paul", "paul", new ArrayList<>());
+        String sql = "SELECT userName, password FROM users WHERE userName =?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{userName},  (rs, rowNum) -> {
+            String user = rs.getString("userName");
+            String password = rs.getString("password");
+            return new User(user, password, new ArrayList<>());
+        });
+
     }
+
+
 }

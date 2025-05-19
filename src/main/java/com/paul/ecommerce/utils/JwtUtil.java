@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    private String SECRET_KEY = "SECRET"; // Change this to a secure key
+    private String SECRET_KEY = "G02w4pmr2d+qk9gH0t8rc8gK1zEqYbbQkNBGV2llkGs=\n"; // Change this to a secure key
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()

@@ -1,16 +1,8 @@
-package com.paul.ecommerce.model;
+package com.paul.ecommerce.model.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "users")
-//@Getter
-//@Setter
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class User {
     private Integer id;
     private String firstName;

@@ -1,8 +1,8 @@
 package com.paul.ecommerce.controller;
 
-import com.paul.ecommerce.model.AuthenticationRequest;
-import com.paul.ecommerce.model.AuthenticationResponse;
-import com.paul.ecommerce.model.User;
+import com.paul.ecommerce.model.login.AuthenticationRequest;
+import com.paul.ecommerce.model.login.AuthenticationResponse;
+import com.paul.ecommerce.model.user.UserDTO;
 import com.paul.ecommerce.service.MyUserDetailsService;
 import com.paul.ecommerce.service.UserService;
 import com.paul.ecommerce.utils.JwtUtil;
@@ -13,12 +13,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -33,7 +30,7 @@ public class UserController {
         this.jwtUtil = jwtUtil;
     }
     @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createUser(@RequestBody User request) {
+    public ResponseEntity<?> createUser(@RequestBody UserDTO request) {
         try {
             userService.createUser(request);
             return ResponseEntity.ok("User created successfully");

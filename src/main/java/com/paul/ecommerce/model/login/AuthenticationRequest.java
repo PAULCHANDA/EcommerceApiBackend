@@ -1,4 +1,4 @@
-package com.paul.ecommerce.model;
+package com.paul.ecommerce.model.login;
 
 import lombok.Data;
 

@@ -1,13 +1,13 @@
 package com.paul.ecommerce.service;
 
-import com.paul.ecommerce.model.User;
+import com.paul.ecommerce.model.user.UserDTO;
+import com.paul.ecommerce.model.user.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.Optional;
 
 @Service
@@ -16,25 +16,26 @@ public class UserService {
     public UserService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    public void createUser(User request) throws Exception{
+    public void createUser(UserDTO request) throws Exception{
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ecommerce_db", "root", "chilekwa");
         String firstName = request.getFirstName();
         String lastName = request.getLastName();
         String userName = request.getUserName();
         String email = request.getEmail();
+        String phoneNumber = request.getPhoneNumber();
         String password = request.getPassword();
         String role = request.getRole();
-        String create_at = request.getCreated_at();
 
-        String q = "INSERT INTO users(firstName, lastName, userName, email, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+        String q = "INSERT INTO users(firstName, lastName, userName, email, phone_number, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = connection.prepareStatement(q);
         statement.setString(1, firstName);
         statement.setString(2, lastName);
         statement.setString(3, userName);
         statement.setString(4, email);
-        statement.setString(5, password);
-        statement.setString(6, role);
+        statement.setString(5, phoneNumber);
+        statement.setString(6, password);
+        statement.setString(7, role);
 
         statement.executeUpdate();
     }
