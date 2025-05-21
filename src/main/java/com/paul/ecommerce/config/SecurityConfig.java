@@ -56,7 +56,8 @@ public class SecurityConfig {
                                 "/api/users/createUser",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html").permitAll()  // Public URLs
+                                "/swagger-ui.html",
+                                "/api/product/createProduct").permitAll()  // Public URLs
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
